@@ -4,7 +4,6 @@
 
 -- Dumped from database version 16.0 (Debian 16.0-1.pgdg120+1)
 -- Dumped by pg_dump version 16.0 (Debian 16.0-1.pgdg120+1)
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -15,14 +14,15 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
 SET default_tablespace = '';
-
 SET default_table_access_method = heap;
-
 --
 -- Name: information; Type: TABLE; Schema: public; Owner: postgres
 --
+
+CREATE DATABASE fund_manager;
+
+\c fund_manager;
 
 CREATE TABLE public.information (
     index bigint,
@@ -37,10 +37,7 @@ CREATE TABLE public.information (
     "Vốn thực góp" text,
     id text
 );
-
-
 ALTER TABLE public.information OWNER TO postgres;
-
 --
 -- Name: metadata; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -53,10 +50,7 @@ CREATE TABLE public.metadata (
     url text,
     id text
 );
-
-
 ALTER TABLE public.metadata OWNER TO postgres;
-
 --
 -- Name: security; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -73,10 +67,7 @@ CREATE TABLE public.security (
     security_url text,
     id text
 );
-
-
 ALTER TABLE public.security OWNER TO postgres;
-
 --
 -- Data for Name: information; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -158,44 +149,36 @@ COPY public.security (index, security_code, "ISINs", security_name, security_typ
 --
 
 CREATE INDEX ix_information_index ON public.information USING btree (index);
-
-
 --
 -- Name: ix_metadata_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX ix_metadata_index ON public.metadata USING btree (index);
-
-
 --
 -- Name: ix_security_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX ix_security_index ON public.security USING btree (index);
+--
+-- Name: User fastapi, support fastapi fetch data
+--
 
-
+CREATE USER fastapi WITH PASSWORD '123456';
 --
 -- Name: TABLE information; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON TABLE public.information TO fastapi;
-
-
 --
 -- Name: TABLE metadata; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON TABLE public.metadata TO fastapi;
-
-
 --
 -- Name: TABLE security; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON TABLE public.security TO fastapi;
-
-
 --
 -- PostgreSQL database dump complete
 --
-
