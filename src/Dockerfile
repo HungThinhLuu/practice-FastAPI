@@ -1,9 +1,9 @@
-FROM python:3.9.16-alpine
+FROM python:latest
 
 WORKDIR /usr/src/app
 
-COPY ./requirements.txt /usr/src/app/requirements.txt
+ENV POSTGRESQL_URI=postgresql://fastapi:123456@localhost:5432/fund_manager
 
-COPY ./app /usr/src/app
+COPY ./requirements.txt ./requirements.txt
 
-RUN pip install -r /usr/src/app/requirements.txt
+RUN python -m pip install -r requirements.txt
