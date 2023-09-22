@@ -26,15 +26,15 @@ CREATE DATABASE fund_manager;
 
 CREATE TABLE public.information (
     index bigint,
-    "Tên đầy đủ" text,
-    "Tên viết tắt" text,
-    "Tên tiếng anh" text,
-    "Địa chỉ" text,
-    "Điện thoại" text,
-    "Fax" text,
-    "Giấy chứng nhận ĐKKD/Giấy phép thành lập" text,
-    "Vốn điều lệ" text,
-    "Vốn thực góp" text,
+    full_name text,
+    acronym text,
+    english_name text,
+    address text,
+    phone text,
+    fax text,
+    certificate text,
+    authorized_capital text,
+    actual_capital text,
     id text
 );
 ALTER TABLE public.information OWNER TO postgres;
@@ -58,7 +58,7 @@ ALTER TABLE public.metadata OWNER TO postgres;
 CREATE TABLE public.security (
     index bigint,
     security_code text,
-    "ISINs" text,
+    isins text,
     security_name text,
     security_type text,
     trading_market text,
@@ -72,7 +72,7 @@ ALTER TABLE public.security OWNER TO postgres;
 -- Data for Name: information; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.information (index, "Tên đầy đủ", "Tên viết tắt", "Tên tiếng anh", "Địa chỉ", "Điện thoại", "Fax", "Giấy chứng nhận ĐKKD/Giấy phép thành lập", "Vốn điều lệ", "Vốn thực góp", id) FROM stdin;
+COPY public.information (index, full_name, acronym, english_name, address, phone, fax, certificate, authorized_capital, actual_capital, id) FROM stdin;
 0	Công ty cổ phần Quản Lý quỹ Đầu tư Dragon Capital Việt Nam	DCVFM	DRAGON CAPITAL VIETFUND MANAGEMENT	Tầng 15, Tòa nhà Mê Linh Point, 02 Ngô Đức Kế, Phường Bến Nghé, Quận 1, Tp. Hồ Chí Minh, Việt Nam.	28.38251488	28.38251489	Số 45/UBCK-GP ngày 08/01/2009	3.443.012.000.000 đồng	3.443.012.000.000 đồng	2747
 1	Công ty  TNHH Quản lý Quỹ EASTSPRING INVESTMENTS	EIFMC	Eastspring Investments Fund Management Limited Liability Company	Tầng 23, số 37 Tôn Đức Thắng, Quận 1,  Tp HCM	(84-8)39101660	(84-8)39105613	25/GPĐC-UBCK  do UBCKNN cấp ngày 09/12/2011	500.000.000.000 đồng	500.000.000.000 đồng	936
 2	Công ty TNHH Quản lý Quỹ KIM Việt Nam	KIM	KIM Vietnam Fund Management Co., Ltd.	Phòng 1807-1808, toà nhà mPlaza Sài Gòn, số 39 Lê Duẩn, phường Bến Nghé, Quận 1, TP HCM.	028 3824 2220	028 3824 2225	số	55.000.000.000 đồng	55.000.000.000 đồng	7176
@@ -114,7 +114,7 @@ COPY public.metadata (index, abbreviation, full_name, address, url, id) FROM std
 -- Data for Name: security; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.security (index, security_code, "ISINs", security_name, security_type, trading_market, administration_place, status, security_url, id) FROM stdin;
+COPY public.security (index, security_code, isins, security_name, security_type, trading_market, administration_place, status, security_url, id) FROM stdin;
 0	E1VFVN30	VN0E1VFVN306	Chứng chỉ Quỹ ETF DCVFMVN30	Chứng chỉ quỹ	HOSE	Trụ sở chính	Hiệu lực	https://vsd.vn/s-detail/2464	2747
 1	FUEDCMID	VN0FUEDCMID9	Chứng chỉ Quỹ ETF DCVFMVNMIDCAP	Chứng chỉ quỹ	HOSE	Trụ sở chính	Hiệu lực	https://vsd.vn/s-detail/26849	2747
 2	FUEVFVND	VN0FUEVFVND5	Chứng chỉ Quỹ ETF DCVFMVN DIAMOND	Chứng chỉ quỹ	HOSE	Trụ sở chính	Hiệu lực	https://vsd.vn/s-detail/10791	2747

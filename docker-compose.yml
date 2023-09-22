@@ -4,7 +4,6 @@ services:
   postgres-db:
     image: postgres:16.0
     restart: always
-    # command: psql -U postgres -a -f /usr/src/dump.sql
     expose:
       - 5432
     environment:
