@@ -10,16 +10,18 @@ from sqlalchemy import (
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
-    mapped_column
+    mapped_column,
+    sessionmaker
 ) 
 
 # Declare
 __DATABASE_URL = os.getenv('POSTGRESQL_URI')
-POSTGRES_ENGINE = create_engine(url=__DATABASE_URL)
+POSTGRES_ENGINE = create_engine(url=__DATABASE_URL) if __DATABASE_URL else None
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=POSTGRES_ENGINE)
 
 # Declare
 class Base(DeclarativeBase):
-    __allow_unmapped__ = True
+    pass
 
 
 class FundMetadata(Base):
